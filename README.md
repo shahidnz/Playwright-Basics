@@ -34,7 +34,32 @@ npm install typescript @playwright/test --save-dev
 npx tsc --init
 npx playwright install  # Installs browser binaries
 ```
+Console shows:
+```D:\Projects\Playwright\Facebook-Playwright>npm install typescript @playwright/test --save-dev
+added 4 packages, and audited 5 packages in 3s
+found 0 vulnerabilities
+
+D:\Projects\Playwright\Facebook-Playwright>npx tsc --init
+Created a new tsconfig.json with:                                                                                                                TS
+  target: es2016
+  module: commonjs
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+You can learn more at https://aka.ms/tsconfig
+```
+If you are manually creating your source files, you may use similar commands:
+```
+mkdir tests
+cd tests
+mkdir specs utils pages
+type nul > pages/facebook-login-page.ts
+type nul > specs/facebook-login.spec.ts
+type nul > utils/test-utils.ts
+```
 ### 2. Configure tsconfig.json
+Uncomment the below lines and append include/exclude section. E.g.
 ```
 {
   "compilerOptions": {
@@ -50,4 +75,13 @@ npx playwright install  # Installs browser binaries
   "exclude": ["node_modules"]
 }
 ```
+### Execute from terminal
+```
+D:\Projects\Playwright\Facebook-Playwright>npm run test:headed
+```
+![image](https://github.com/user-attachments/assets/b9cb06ef-9742-4386-9816-191dcd66f1ee)
+
+
+Because we intentionally did not provide the correct credentials in the login spec file, it should fail after retries.
+![image](https://github.com/user-attachments/assets/f244272d-a38b-4377-a93a-a3dc337da3a3)
 
